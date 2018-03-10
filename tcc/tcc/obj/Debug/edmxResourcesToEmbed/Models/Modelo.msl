@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="projeto_tccModelStoreContainer" CdmEntityContainer="ModeloEntities">
+    <EntitySetMapping Name="tb_usuario_perfil">
+      <EntityTypeMapping TypeName="projeto_tccModel.tb_usuario_perfil">
+        <MappingFragment StoreEntitySet="tb_usuario_perfil">
+          <ScalarProperty Name="id_usuario_perfil" ColumnName="id_usuario_perfil" />
+          <ScalarProperty Name="tx_perfil" ColumnName="tx_perfil" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tb_usuarios">
+      <EntityTypeMapping TypeName="projeto_tccModel.tb_usuarios">
+        <MappingFragment StoreEntitySet="tb_usuarios">
+          <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+          <ScalarProperty Name="id_usuario_perfil" ColumnName="id_usuario_perfil" />
+          <ScalarProperty Name="tx_nome" ColumnName="tx_nome" />
+          <ScalarProperty Name="tx_email" ColumnName="tx_email" />
+          <ScalarProperty Name="tx_login" ColumnName="tx_login" />
+          <ScalarProperty Name="tx_senha" ColumnName="tx_senha" />
+          <ScalarProperty Name="in_creditos" ColumnName="in_creditos" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tb_videos">
+      <EntityTypeMapping TypeName="projeto_tccModel.tb_videos">
+        <MappingFragment StoreEntitySet="tb_videos">
+          <ScalarProperty Name="id_video" ColumnName="id_video" />
+          <ScalarProperty Name="tx_link_video" ColumnName="tx_link_video" />
+          <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
