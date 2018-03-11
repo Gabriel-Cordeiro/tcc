@@ -21,7 +21,7 @@ namespace tcc.Models
         }
     
         public int id_usuario { get; set; }
-        public Nullable<int> id_usuario_perfil { get; set; }
+        public int id_usuario_perfil { get; set; }
         public string tx_nome { get; set; }
         public string tx_email { get; set; }
         public string tx_login { get; set; }

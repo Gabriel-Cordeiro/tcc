@@ -5,11 +5,11 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="71a58e9b71c242bfb1221409b6347149" Name="Diagram1">
-        <EntityTypeShape EntityType="projeto_tccModel.tb_usuario_perfil" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="projeto_tccModel.tb_usuarios" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="projeto_tccModel.tb_videos" Width="1.5" PointX="5.25" PointY="1.5" IsExpanded="true" />
-        <AssociationConnector Association="projeto_tccModel.FK__tb_usuari__id_us__4F7CD00D" ManuallyRouted="false" />
-        <AssociationConnector Association="projeto_tccModel.FK__tb_videos__id_us__52593CB8" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="projeto_tccModel.tb_usuario_perfil" Width="1.5" PointX="0.75" PointY="1.5" />
+        <EntityTypeShape EntityType="projeto_tccModel.tb_usuarios" Width="1.5" PointX="3" PointY="1" />
+        <EntityTypeShape EntityType="projeto_tccModel.tb_videos" Width="1.5" PointX="5.25" PointY="1.5" />
+        <AssociationConnector Association="projeto_tccModel.FK__tb_usuari__id_us__4F7CD00D" />
+        <AssociationConnector Association="projeto_tccModel.FK__tb_videos__id_us__52593CB8" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

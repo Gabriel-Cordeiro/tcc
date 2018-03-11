@@ -1,22 +1,22 @@
 ﻿@model tcc.Models.tb_usuarios
 @{
     ViewBag.Title = "Cadastro";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Cadastro</h2>
+@if (@ViewBag.Status == null)
+{
+    <script type="text/javascript">
+        swal("Ok", "Portal adicionado com sucesso!", "success")
+    </script>
+}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8" />
-    <title>Login</title>
-    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-    <meta name="viewport" content="width=device-width" />
-    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
-    <link href="~/Content/style.css" rel="stylesheet" />
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/jqueryval")
-</head>
+@if (@ViewBag.Status != null)
+{
+    <script language='javascript' type='text/javascript'>alert('Cadastro efetuado com sucesso');
+    window.location.href = '../Login/Login';</script>
+}
+
 <body id="login">
     <div class="container">
         <div class="container-fluid">
@@ -25,28 +25,39 @@
                 {
                     @Html.AntiForgeryToken()
                     @Html.ValidationSummary(true)
+                    @Html.ValidationMessage("Usuario");
                     <h2 class="form-signin-heading text-center text-info">Cadastre-se</h2>
                     <div class="editor-field">
-                        @Html.TextBoxFor(model => model.tx_login, new { placeholder = "Nome", @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.tx_nome)
+                        @Html.TextBoxFor(model => model.tx_nome, new { placeholder = "Nome", @class = "form-control" })
                     </div>
                     <br />
                     <div class="editor-field">
-                        @Html.TextBoxFor(model => model.tx_login, new { placeholder = "E-mail", @class = "form-control" })
+                        @Html.TextBoxFor(model => model.tx_email, new { placeholder = "E-mail", @class = "form-control" })
                         @Html.ValidationMessageFor(model => model.tx_email)
+
                     </div>
                     <br />
                     <div class="editor-field">
                         @Html.TextBoxFor(model => model.tx_login, new { placeholder = "Login", @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.tx_login)
                     </div>
                     <br />
                     <div class="editor-field">
                         @Html.PasswordFor(model => model.tx_senha, new { placeholder = "Senha", @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.tx_senha)
+                    </div>
+                    <br>
+                    <div class="editor-field">
+                        <label>Selecion o plano:</label>
+                        @Html.DropDownListFor(x => x.id_usuario_perfil, new List<SelectListItem>
+                                                    {
+                                                        new SelectListItem() {Text = "Gratuito", Value="1"},
+                                                        new SelectListItem() {Text = "Vip", Value="2"},
+                                                    }, new { @class = "form-control" })
+
                     </div>
                     <br>
                     <input type="submit" value="Enviar" class="btn btn-lg btn-info btn-block" />
+
+
                     @*//Verifica se a pagina foi acessada sem estar autenticada e inclui um alerta.
                         if (Redirect == "Redirecionamento")
                         {

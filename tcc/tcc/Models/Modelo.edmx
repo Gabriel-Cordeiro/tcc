@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="projeto_tccModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="projeto_tccModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="tb_usuario_perfil">
           <Key>
             <PropertyRef Name="id_usuario_perfil" />
@@ -17,11 +17,11 @@
             <PropertyRef Name="id_usuario" />
           </Key>
           <Property Name="id_usuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="id_usuario_perfil" Type="int" />
-          <Property Name="tx_nome" Type="varchar" MaxLength="150" />
-          <Property Name="tx_email" Type="varchar" MaxLength="150" />
-          <Property Name="tx_login" Type="varchar" MaxLength="150" />
-          <Property Name="tx_senha" Type="varchar" MaxLength="150" />
+          <Property Name="id_usuario_perfil" Type="int" Nullable="false" />
+          <Property Name="tx_nome" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="tx_email" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="tx_login" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="tx_senha" Type="varchar" MaxLength="150" Nullable="false" />
           <Property Name="in_creditos" Type="int" />
         </EntityType>
         <EntityType Name="tb_videos">
@@ -33,7 +33,7 @@
           <Property Name="id_usuario" Type="int" />
         </EntityType>
         <Association Name="FK__tb_usuari__id_us__4F7CD00D">
-          <End Role="tb_usuario_perfil" Type="Self.tb_usuario_perfil" Multiplicity="0..1" />
+          <End Role="tb_usuario_perfil" Type="Self.tb_usuario_perfil" Multiplicity="1" />
           <End Role="tb_usuarios" Type="Self.tb_usuarios" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tb_usuario_perfil">
@@ -69,32 +69,44 @@
             <End Role="tb_videos" EntitySet="tb_videos" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="projeto_tccModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="ModeloEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tb_usuario_perfil" EntityType="projeto_tccModel.tb_usuario_perfil" />
+          <EntitySet Name="tb_usuarios" EntityType="projeto_tccModel.tb_usuarios" />
+          <EntitySet Name="tb_videos" EntityType="projeto_tccModel.tb_videos" />
+          <AssociationSet Name="FK__tb_usuari__id_us__4F7CD00D" Association="projeto_tccModel.FK__tb_usuari__id_us__4F7CD00D">
+            <End Role="tb_usuario_perfil" EntitySet="tb_usuario_perfil" />
+            <End Role="tb_usuarios" EntitySet="tb_usuarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tb_videos__id_us__52593CB8" Association="projeto_tccModel.FK__tb_videos__id_us__52593CB8">
+            <End Role="tb_usuarios" EntitySet="tb_usuarios" />
+            <End Role="tb_videos" EntitySet="tb_videos" />
+          </AssociationSet>
+        </EntityContainer>
         <EntityType Name="tb_usuario_perfil">
           <Key>
             <PropertyRef Name="id_usuario_perfil" />
           </Key>
           <Property Name="id_usuario_perfil" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="tx_perfil" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="tb_usuarios" Relationship="Self.FK__tb_usuari__id_us__4F7CD00D" FromRole="tb_usuario_perfil" ToRole="tb_usuarios" />
+          <NavigationProperty Name="tb_usuarios" Relationship="projeto_tccModel.FK__tb_usuari__id_us__4F7CD00D" FromRole="tb_usuario_perfil" ToRole="tb_usuarios" />
         </EntityType>
         <EntityType Name="tb_usuarios">
           <Key>
             <PropertyRef Name="id_usuario" />
           </Key>
           <Property Name="id_usuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="id_usuario_perfil" Type="Int32" />
-          <Property Name="tx_nome" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
-          <Property Name="tx_email" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
-          <Property Name="tx_login" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
-          <Property Name="tx_senha" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="id_usuario_perfil" Type="Int32" Nullable="false" />
+          <Property Name="tx_nome" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="tx_email" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="tx_login" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="tx_senha" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
           <Property Name="in_creditos" Type="Int32" />
-          <NavigationProperty Name="tb_usuario_perfil" Relationship="Self.FK__tb_usuari__id_us__4F7CD00D" FromRole="tb_usuarios" ToRole="tb_usuario_perfil" />
-          <NavigationProperty Name="tb_videos" Relationship="Self.FK__tb_videos__id_us__52593CB8" FromRole="tb_usuarios" ToRole="tb_videos" />
+          <NavigationProperty Name="tb_usuario_perfil" Relationship="projeto_tccModel.FK__tb_usuari__id_us__4F7CD00D" FromRole="tb_usuarios" ToRole="tb_usuario_perfil" />
+          <NavigationProperty Name="tb_videos" Relationship="projeto_tccModel.FK__tb_videos__id_us__52593CB8" FromRole="tb_usuarios" ToRole="tb_videos" />
         </EntityType>
         <EntityType Name="tb_videos">
           <Key>
@@ -103,11 +115,11 @@
           <Property Name="id_video" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="tx_link_video" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="id_usuario" Type="Int32" />
-          <NavigationProperty Name="tb_usuarios" Relationship="Self.FK__tb_videos__id_us__52593CB8" FromRole="tb_videos" ToRole="tb_usuarios" />
+          <NavigationProperty Name="tb_usuarios" Relationship="projeto_tccModel.FK__tb_videos__id_us__52593CB8" FromRole="tb_videos" ToRole="tb_usuarios" />
         </EntityType>
         <Association Name="FK__tb_usuari__id_us__4F7CD00D">
-          <End Role="tb_usuario_perfil" Type="Self.tb_usuario_perfil" Multiplicity="0..1" />
-          <End Role="tb_usuarios" Type="Self.tb_usuarios" Multiplicity="*" />
+          <End Type="projeto_tccModel.tb_usuario_perfil" Role="tb_usuario_perfil" Multiplicity="1" />
+          <End Type="projeto_tccModel.tb_usuarios" Role="tb_usuarios" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tb_usuario_perfil">
               <PropertyRef Name="id_usuario_perfil" />
@@ -118,8 +130,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__tb_videos__id_us__52593CB8">
-          <End Role="tb_usuarios" Type="Self.tb_usuarios" Multiplicity="0..1" />
-          <End Role="tb_videos" Type="Self.tb_videos" Multiplicity="*" />
+          <End Type="projeto_tccModel.tb_usuarios" Role="tb_usuarios" Multiplicity="0..1" />
+          <End Type="projeto_tccModel.tb_videos" Role="tb_videos" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tb_usuarios">
               <PropertyRef Name="id_usuario" />
@@ -129,19 +141,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="ModeloEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="tb_usuario_perfil" EntityType="Self.tb_usuario_perfil" />
-          <EntitySet Name="tb_usuarios" EntityType="Self.tb_usuarios" />
-          <EntitySet Name="tb_videos" EntityType="Self.tb_videos" />
-          <AssociationSet Name="FK__tb_usuari__id_us__4F7CD00D" Association="Self.FK__tb_usuari__id_us__4F7CD00D">
-            <End Role="tb_usuario_perfil" EntitySet="tb_usuario_perfil" />
-            <End Role="tb_usuarios" EntitySet="tb_usuarios" />
-          </AssociationSet>
-          <AssociationSet Name="FK__tb_videos__id_us__52593CB8" Association="Self.FK__tb_videos__id_us__52593CB8">
-            <End Role="tb_usuarios" EntitySet="tb_usuarios" />
-            <End Role="tb_videos" EntitySet="tb_videos" />
-          </AssociationSet>
-        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -151,30 +150,30 @@
           <EntitySetMapping Name="tb_usuario_perfil">
             <EntityTypeMapping TypeName="projeto_tccModel.tb_usuario_perfil">
               <MappingFragment StoreEntitySet="tb_usuario_perfil">
-                <ScalarProperty Name="id_usuario_perfil" ColumnName="id_usuario_perfil" />
                 <ScalarProperty Name="tx_perfil" ColumnName="tx_perfil" />
+                <ScalarProperty Name="id_usuario_perfil" ColumnName="id_usuario_perfil" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tb_usuarios">
             <EntityTypeMapping TypeName="projeto_tccModel.tb_usuarios">
               <MappingFragment StoreEntitySet="tb_usuarios">
-                <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
-                <ScalarProperty Name="id_usuario_perfil" ColumnName="id_usuario_perfil" />
-                <ScalarProperty Name="tx_nome" ColumnName="tx_nome" />
-                <ScalarProperty Name="tx_email" ColumnName="tx_email" />
-                <ScalarProperty Name="tx_login" ColumnName="tx_login" />
-                <ScalarProperty Name="tx_senha" ColumnName="tx_senha" />
                 <ScalarProperty Name="in_creditos" ColumnName="in_creditos" />
+                <ScalarProperty Name="tx_senha" ColumnName="tx_senha" />
+                <ScalarProperty Name="tx_login" ColumnName="tx_login" />
+                <ScalarProperty Name="tx_email" ColumnName="tx_email" />
+                <ScalarProperty Name="tx_nome" ColumnName="tx_nome" />
+                <ScalarProperty Name="id_usuario_perfil" ColumnName="id_usuario_perfil" />
+                <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tb_videos">
             <EntityTypeMapping TypeName="projeto_tccModel.tb_videos">
               <MappingFragment StoreEntitySet="tb_videos">
-                <ScalarProperty Name="id_video" ColumnName="id_video" />
-                <ScalarProperty Name="tx_link_video" ColumnName="tx_link_video" />
                 <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+                <ScalarProperty Name="tx_link_video" ColumnName="tx_link_video" />
+                <ScalarProperty Name="id_video" ColumnName="id_video" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -15,11 +15,27 @@ namespace tcc.Controllers
         {
             return View();
         }
-        public ActionResult CadastraUsuario(tb_usuarios teste)
+        public ActionResult CadastraUsuario(tb_usuarios objUsuario)
         {
-            ModelState.AddModelError("TxSenha", "Usuário Desativado!");
+            if(!String.IsNullOrEmpty(objUsuario.tx_nome) && !String.IsNullOrEmpty(objUsuario.tx_login) && !String.IsNullOrEmpty(objUsuario.tx_email) && !String.IsNullOrEmpty(objUsuario.tx_senha))
+            {
 
-            return View();
+                //Créditos iniciais
+                objUsuario.in_creditos = 5;
+                Usuario usuario = new Usuario();
+                usuario.cadastraUsuario(objUsuario);
+                ViewBag.Status = "Dados gravados com Êxito";
+                return View("Cadastro");
+
+            }
+
+            else
+            {
+                ModelState.AddModelError("Usuario", "Preencha todos os dados do formulário");
+                return View("Cadastro", objUsuario);
+            }
+
+
         }
     }
 }

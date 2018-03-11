@@ -12,11 +12,11 @@
       <PropertyRef Name="id_usuario" />
     </Key>
     <Property Name="id_usuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="id_usuario_perfil" Type="int" />
-    <Property Name="tx_nome" Type="varchar" MaxLength="150" />
-    <Property Name="tx_email" Type="varchar" MaxLength="150" />
-    <Property Name="tx_login" Type="varchar" MaxLength="150" />
-    <Property Name="tx_senha" Type="varchar" MaxLength="150" />
+    <Property Name="id_usuario_perfil" Type="int" Nullable="false" />
+    <Property Name="tx_nome" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="tx_email" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="tx_login" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="tx_senha" Type="varchar" MaxLength="150" Nullable="false" />
     <Property Name="in_creditos" Type="int" />
   </EntityType>
   <EntityType Name="tb_videos">
@@ -28,7 +28,7 @@
     <Property Name="id_usuario" Type="int" />
   </EntityType>
   <Association Name="FK__tb_usuari__id_us__4F7CD00D">
-    <End Role="tb_usuario_perfil" Type="Self.tb_usuario_perfil" Multiplicity="0..1" />
+    <End Role="tb_usuario_perfil" Type="Self.tb_usuario_perfil" Multiplicity="1" />
     <End Role="tb_usuarios" Type="Self.tb_usuarios" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="tb_usuario_perfil">
