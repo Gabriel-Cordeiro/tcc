@@ -1,0 +1,76 @@
+﻿@model tcc.Models.tb_usuarios
+@{
+    ViewBag.Title = "Cadastro";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (@ViewBag.Status == null)
+{
+    <script type="text/javascript">
+        swal("Ok", "Portal adicionado com sucesso!", "success")
+    </script>
+}
+
+@if (@ViewBag.Status != null)
+{
+    <script language='javascript' type='text/javascript'>alert('Cadastro efetuado com sucesso');
+    window.location.href = '../Login/Login';</script>
+}
+
+<body id="login">
+    <div class="container">
+        <div class="container-fluid">
+            <div class="box-login">
+                @using (Html.BeginForm("CadastraUsuario", "Usuario", FormMethod.Post, new { @class = "form-signin" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true)
+                    @Html.ValidationMessage("Usuario");
+                    <h2 class="form-signin-heading text-center text-info">Cadastre-se</h2>
+                    <div class="editor-field">
+                        @Html.TextBoxFor(model => model.tx_nome, new { placeholder = "Nome", @class = "form-control" })
+                    </div>
+                    <br />
+                    <div class="editor-field">
+                        @Html.TextBoxFor(model => model.tx_email, new { placeholder = "E-mail", @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.tx_email)
+
+                    </div>
+                    <br />
+                    <div class="editor-field">
+                        @Html.TextBoxFor(model => model.tx_login, new { placeholder = "Login", @class = "form-control" })
+                    </div>
+                    <br />
+                    <div class="editor-field">
+                        @Html.PasswordFor(model => model.tx_senha, new { placeholder = "Senha", @class = "form-control" })
+                    </div>
+                    <br>
+                    <div class="editor-field">
+                        <label>Selecion o plano:</label>
+                        @Html.DropDownListFor(x => x.id_usuario_perfil, new List<SelectListItem>
+                                                    {
+                                                        new SelectListItem() {Text = "Gratuito", Value="1"},
+                                                        new SelectListItem() {Text = "Vip", Value="2"},
+                                                    }, new { @class = "form-control" })
+
+                    </div>
+                    <br>
+                    <input type="submit" value="Enviar" class="btn btn-lg btn-info btn-block" />
+
+
+                    @*//Verifica se a pagina foi acessada sem estar autenticada e inclui um alerta.
+                        if (Redirect == "Redirecionamento")
+                        {
+                            <br>
+                            <div class="alert alert-warning text-center">
+                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Voce não está autenticado.
+                            </div>
+
+                        }*@
+                }
+            </div>
+        </div>
+    </div>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+</body>
+</html>

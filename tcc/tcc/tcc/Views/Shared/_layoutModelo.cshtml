@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title -Projeto TCC</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+    <script src="~/Scripts/jquery-1.9.1.js"></script>
+    <script src="~/Scripts/functions.js"></script>
+    <script src="~/Content/dist/sweetalert.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="~/Content/dist/sweetalert.css">
+    <link rel="stylesheet" href="~/Content/Site.css">
+
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <script src="~/Scripts/functions.js"></script>
+
+
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Página Inicial", "Index", "Principal")</li>
+                    <li>@Html.ActionLink("Meus vídeos", "Index", "UsuarioVideos")</li>
+                    <li>@Html.ActionLink("Sair", "Deslogar", "Principal")</li>
+                    <li>
+                        <input class="form-control mr-sm-2" type="search" placeholder="Digite um nome ou categoria" aria-label="Search">
+                    </li>
+                    <li>
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <strong>Logado como:@Request.Cookies["PerfilLogin"].Value</strong>
+    <br />
+    <strong>Créditos:@Request.Cookies["PerfilCreditos"].Value</strong>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Projeto tcc</p>
+        </footer>
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
